@@ -4,7 +4,7 @@ import org.ada.school.controller.user.UserDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -41,8 +41,7 @@ public class User
         email = userDto.getEmail();
         createdAt = new Date();
         roles = new ArrayList<>( Collections.singleton( RoleEnum.USER ) );
-        //TODO uncomment this line
-        // passwordHash = BCrypt.hashpw( userDto.getPassword(), BCrypt.gensalt() );
+        passwordHash = BCrypt.hashpw( userDto.getPassword(), BCrypt.gensalt() );
     }
 
     public String getId()

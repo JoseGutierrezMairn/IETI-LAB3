@@ -315,6 +315,12 @@ Our API Endpoints can be used by anyone that knows the URL and API structure. In
    ```
 6. Verify the authentication endpoint by sending the credentials of the user created in 5.
 
+~~~
+Auth is working
+~~~
+
+![auth](https://github.com/JoseGutierrezMairn/IETI-LAB3/blob/code-implementation/img/authPost.PNG?raw=true)   
+
 ### Part 3: Implement JWT Request Filter
 
 This filter will help you verify the authroization token send on the request authorization header or using a Cookie.
