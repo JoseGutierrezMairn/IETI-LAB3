@@ -638,6 +638,8 @@ class SecurityConfiguration : WebSecurityConfigurerAdapter() {
       ```properties
          Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MTMwZmMzMWYwNTk2YzE0YzRiOWY5NTMiLCJhZGFfcm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE2MzA2MDAzMjAsImV4cCI6MTYzMDY4NjcyMH0.s29NZMHYDCsCXqj9W9ZajNnlwyzW4qJG832Z3PXhwhk
       ```
+	  
+	  ![authorizedGet](https://github.com/JoseGutierrezMairn/IETI-LAB3/blob/code-implementation/img/authorizedGet.PNG?raw=true)   
 
 ### Challenge Yourself: Implement a mechanism to support Application tokens
 
