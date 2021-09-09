@@ -58,10 +58,7 @@ public class UserServiceMongoDB
     }
 
     @Override
-    public List<User> all()
-    {
-        return userRepository.findAll();
-    }
+    public List<User> all() { return userRepository.findAll(); }
 
     @Override
     public boolean deleteById( String id )

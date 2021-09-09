@@ -14,10 +14,7 @@ public class UserDto
     {
     }
 
-    public String getName()
-    {
-        return name;
-    }
+    public String getName(){ return name; }
 
     public String getLastName()
     {

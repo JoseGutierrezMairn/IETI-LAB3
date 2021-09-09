@@ -315,6 +315,12 @@ Our API Endpoints can be used by anyone that knows the URL and API structure. In
    ```
 6. Verify the authentication endpoint by sending the credentials of the user created in 5.
 
+~~~
+Auth is working
+~~~
+
+![auth](https://github.com/JoseGutierrezMairn/IETI-LAB3/blob/codelab-implementation/img/authPost.PNG?raw=true)   
+
 ### Part 3: Implement JWT Request Filter
 
 This filter will help you verify the authroization token send on the request authorization header or using a Cookie.
@@ -632,6 +638,8 @@ class SecurityConfiguration : WebSecurityConfigurerAdapter() {
       ```properties
          Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MTMwZmMzMWYwNTk2YzE0YzRiOWY5NTMiLCJhZGFfcm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE2MzA2MDAzMjAsImV4cCI6MTYzMDY4NjcyMH0.s29NZMHYDCsCXqj9W9ZajNnlwyzW4qJG832Z3PXhwhk
       ```
+	  
+	  ![authorizedGet](https://github.com/JoseGutierrezMairn/IETI-LAB3/blob/codelab-implementation/img/authorizedGet.PNG?raw=true)   
 
 ### Challenge Yourself: Implement a mechanism to support Application tokens
 
