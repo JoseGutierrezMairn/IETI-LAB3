@@ -8,24 +8,23 @@ import org.ada.school.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.ada.school.utils.Constants.CLAIMS_ROLES_KEY;
-import static org.ada.school.utils.Constants.TOKEN_DURATION_MINUTES;
+import static org.ada.school.utils.Constants.*;
 
 @RestController
-@RequestMapping( "v1/auth" )
+@RequestMapping( "/v1/auth" )
 public class AuthController
 {
 
     @Value( "${app.secret}" )
     String secret;
+
+    @Value( "${app.secret_admin}" )
+    String secretAdmin;
 
     private final UserService userService;
 
@@ -34,6 +33,20 @@ public class AuthController
         this.userService = userService;
     }
 
+
+    @PostMapping("/adminToken")
+    public TokenDto loginAdminRoleToken( @RequestBody SecretAdminDto secretAdmin )
+    {
+        if ( secretAdmin.getSecretAdmin().equals( this.secretAdmin ) )
+        {
+            return generateAdminTokenDto();
+        }
+        else
+        {
+            throw new InvalidCredentialsException();
+        }
+
+    }
     @PostMapping
     public TokenDto login( @RequestBody LoginDto loginDto )
     {
@@ -48,6 +61,8 @@ public class AuthController
         }
 
     }
+
+
 
     private String generateToken( User user, Date expirationDate )
     {
@@ -67,4 +82,19 @@ public class AuthController
         String token = generateToken( user, expirationDate.getTime() );
         return new TokenDto( token, expirationDate.getTime() );
     }
+
+    private TokenDto generateAdminTokenDto()
+    {
+        Calendar expirationDate = Calendar.getInstance();
+        expirationDate.add( Calendar.MINUTE, TOKEN_DURATION_TEN_MINUTES );
+        String token =Jwts.builder()
+                .setSubject( "admin" )
+                .claim(CLAIMS_ROLES_KEY, ADMIN_ROLE )
+                .setIssuedAt(new Date() )
+                .setExpiration( expirationDate.getTime() )
+                .signWith( SignatureAlgorithm.HS256, secretAdmin )
+                .compact();
+        return new TokenDto( token, expirationDate.getTime() );
+    }
+
 }

@@ -1,8 +1,15 @@
 package org.ada.school.utils;
 
-public class Constants{
 
-    public static final String CLAIMS_ROLES_KEY = "CLAIMS_ROLES_KEY";
-    public static final int TOKEN_DURATION_MINUTES = 10;
-    public static final String COOKIE_NAME = "COOKIE_NAME";
+public interface Constants
+{
+    String COOKIE_NAME = "ada-JWT";
+
+    String CLAIMS_ROLES_KEY = "ada_roles";
+
+    int TOKEN_DURATION_MINUTES = 1440;
+    int TOKEN_DURATION_TEN_MINUTES = 10;
+
+    String ADMIN_ROLE = "ADMIN";
+    String USER_ROLE = "USER";
 }
